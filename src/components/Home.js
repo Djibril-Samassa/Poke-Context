@@ -26,7 +26,6 @@ export default function Home(){
             <p>Name : {pokemon.name}</p>
             <p>Height : {pokemon.height}</p>
             <p>Wieght : {pokemon.weight}</p>
-            <p>Type : {pokemon.types[0].type.name}</p>
             <button onClick={handleClick}>Get a new Pokemon</button>
         </>
     

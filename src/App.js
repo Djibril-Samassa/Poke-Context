@@ -4,24 +4,33 @@ import Login from "./components/Login"
 import { BrowserRouter, Switch, Link, Route } from "react-router-dom";
 import './App.css';
 
+export const UserContext = createContext();
 
 function App() {
   
-  
-  const[isLogged, setIsLogged] = useState(false)
+  const [isLogged, setLogged] = useState(false)
+
+  const value = {
+    isLogged: isLogged,
+    setLogged: setLogged,
+  }
+
+
 
   return (
-    <BrowserRouter>
-    <nav>
-      <Link to={"/login"}>Se connecter | </Link>
-      <Link to={"/"}>Homepage</Link>
-    </nav>
-    <Switch>
-      <Route exact path="/login" component={Login}/>
-      <Route exact path ="/" component={Home}/>
-    </Switch>
-    
-    </BrowserRouter>
+    <UserContext.Provider value={value}>
+      <BrowserRouter>
+        <nav>
+          <Link to={"/login"}>Se connecter | </Link>
+          <Link to={"/"}>Homepage</Link>
+        </nav>
+        <Switch>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path ="/" component={Home}/>
+        </Switch>
+        
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 

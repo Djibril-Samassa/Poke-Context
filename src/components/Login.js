@@ -1,15 +1,30 @@
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import { useContext } from "react";
+import {UserContext} from "../App";
 
 export default function Login(){
+    const {isLogged} = useContext(UserContext)
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
+    const userState = useContext(UserContext)
+
+    const setAuth = () => {
+        if(userState.isLogged === true){
+            userState.setLogged(false);
+            console.log(isLogged);
+        }
+        else{
+            userState.setLogged(true)
+            console.log(isLogged);
+        }}
+
+
     const onSubmit = data =>{
         // Aller vers Home
-            history.push("/")
+            setAuth();
     };
 
 
